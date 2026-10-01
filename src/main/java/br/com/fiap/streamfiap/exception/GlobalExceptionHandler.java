@@ -15,6 +15,11 @@ public class GlobalExceptionHandler {
         return respostaErro(HttpStatus.NOT_FOUND, e.getMessage());
     }
 
+    @ExceptionHandler(UsuarioNaoEncontradoException.class)
+    public ResponseEntity<Map<String, String>> handleUsuarioNaoEncontrado(UsuarioNaoEncontradoException e) {
+        return respostaErro(HttpStatus.NOT_FOUND, e.getMessage());
+    }
+
     @ExceptionHandler(CreditosInsuficientesException.class)
     public ResponseEntity<Map<String, String>> handleCreditosInsuficientes(CreditosInsuficientesException e) {
         return respostaErro(HttpStatus.UNPROCESSABLE_ENTITY, e.getMessage());
@@ -33,11 +38,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ClassificacaoIndicativaException.class)
     public ResponseEntity<Map<String, String>> handleClassificacaoIndicativa(ClassificacaoIndicativaException e) {
         return respostaErro(HttpStatus.FORBIDDEN, e.getMessage());
-    }
-
-    @ExceptionHandler(UsuarioNaoEncontradoException.class)
-    public ResponseEntity<Map<String, String>> handleUsuarioNaoEncontrado(UsuarioNaoEncontradoException e) {
-        return respostaErro(HttpStatus.NOT_FOUND, e.getMessage());
     }
 
     private ResponseEntity<Map<String, String>> respostaErro(HttpStatus status, String mensagem) {
